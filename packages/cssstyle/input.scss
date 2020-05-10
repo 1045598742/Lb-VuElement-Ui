@@ -1,0 +1,49 @@
+.lb-input{
+    position: relative;
+    .lb-input_inner,.el-textarea_inner{
+        width: 100%;
+        background-color: white;
+        box-sizing: border-box;
+        border-radius: 4px;
+       outline: 0;
+       border: 1px solid $border-color;
+       padding: 0 15px;
+       color: $font-color;
+       transition: all .2s;
+       &:hover{
+        border-color: darken($border-color, 5%) ;
+    }
+    &:focus{
+        border-color: $primary ;
+    }
+    }
+   .lb-input_inner{
+      
+       height: 40px;
+       line-height: 40px;
+       cursor: pointer;
+   }
+   [class*=lb-input-icon]{
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    position: absolute;
+    font-size: 14px;
+   }
+   .lb-icon-test44,.lb-input-next-icon{
+       right: 15px;
+   }
+   .lb-input-prev-icon{
+    left: 15px;
+   }
+}
+.lb-input-padding-prev{
+    .lb-input_inner{
+       padding-left: 30px;
+    }
+}
+.lb-input-padding-next{
+    .lb-input_inner{
+        padding-right:30px;
+    }
+}

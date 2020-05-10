@@ -1,0 +1,21 @@
+.lb-option {
+    font-size: 14px;
+    padding: 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #606266;
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:hover{
+      background-color: #f5f7fa;
+      color: $primary;
+    }
+  }
+  .lb-option-active{
+    color: $primary;
+    background-color: #f5f7fa;
+  }

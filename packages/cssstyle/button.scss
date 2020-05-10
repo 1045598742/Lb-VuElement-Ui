@@ -1,0 +1,139 @@
+@mixin border-style(
+  $color: $default,//边框颜色
+  $font-color: $font-color,//字体颜色
+  $background-color: white, // 背景颜色
+  $radius: 4px, // 圆角大小
+  $style: solid,//边框风格
+  $size: 14px,//字体大小
+) {
+  border: {
+    width: 1px;
+    color: $color;//
+    style: $style;
+    radius: $radius;
+  }
+  color: $font-color;
+  background-color: $background-color;
+  font-size: $size;
+}
+
+@mixin button-radius($radius) {
+  border-radius:$radius;
+  &:hover{
+    border-radius: $radius;
+  }
+  &:focus{
+    border-radius: $radius;
+  }
+  &:active{
+    border-radius: $radius;
+  }
+}
+
+.lb-button {
+    cursor: pointer;
+  box-shadow: none;
+  user-select: none;
+  margin-right: 8px;
+  margin-bottom: 12px;
+  white-space: nowrap;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 11px 20px;
+  i{
+    display: inline-block;
+    vertical-align:baseline;
+    position: relative;
+    top: 1px;
+  }
+  [class*=lb-icon-]+span {
+    margin-left: 5px;
+  }
+  transition: all 0.2s;
+  @include border-style();
+  &:hover {
+    @include border-style($primary, $primary);
+  }
+  &:focus,&:active {
+    @include border-style($primary, $primary);
+    outline: none;
+  }
+  @each $type,$color in(
+  primary:$primary,
+  success:$success,
+  info:$info,
+  warning:$warning,
+  danger:$danger,
+){
+  &_#{$type}{
+    // background:#{$color};
+    @include border-style(#{$color},white,$color);
+    &:hover{
+      @include border-style(lighten($color,20%),white, lighten($color,20%));
+    }
+    &:active{
+      @include border-style(lighten($color,20%),white, lighten($color,20%));
+    }
+    &:focus{
+      @include border-style(lighten($color,20%),white, lighten($color,20%));
+    }
+  }
+}
+
+}
+.lb-button_circle{
+    padding: 12px;
+    line-height: 1;
+    @include button-radius(50%);
+
+}
+.lb-button_round{
+  @include button-radius(20px);
+}
+.lb-button_plant{
+
+  @each $type,$color in(
+    primary:$primary,
+    success:$success,
+    info:$info,
+    warning:$warning,
+    danger:$danger,
+  ){
+   &.lb-button_#{$type}{
+      // background:#{$color};
+      @include border-style(lighten($color,10%),$color,lighten($color,25%));
+      &:hover{
+        @include border-style($color,white, #{$color});
+      }
+      &:active{
+        @include border-style(#{$color},white, #{$color});
+      }
+      &:focus{
+        @include border-style(#{$color},white, #{$color});
+      }
+    }
+  }
+}
+.lb-button_disabled{
+  cursor: not-allowed;
+  &.lb-button_default{
+   
+    &,&:hover,&:active,&:focus{
+      @include border-style(lighten($default,4%),lighten($font-color,50%));
+    }
+  }
+  @each $type,$color in(
+    primary:$primary,
+    success:$success,
+    info:$info,
+    warning:$warning,
+    danger:$danger,
+  ){
+   &.lb-button_#{$type}{
+      // background:#{$color};
+      &,&:hover,&:active,&:focus{
+        @include border-style(lighten($color,10%),lighten($color,10%),lighten($color,25%));
+      }
+    }
+  }
+}
