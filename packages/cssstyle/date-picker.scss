@@ -1,0 +1,65 @@
+.lb-date-picker {
+    position: relative;
+    width: 240px;
+    
+    .lb-date-picker-popper {
+      margin: 0;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      position: absolute;
+      left: 0;
+      top: 50px;
+      padding: 15px;
+      width: 300px;
+      opacity: 1;
+      box-sizing: border-box;
+      height: 340px;
+      background: white;
+      overflow: hidden;
+      .week-day {
+        align-items: center;
+        justify-content: space-between;
+        span{
+          cursor: pointer;
+          text-align: center;
+        }
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        span {
+          display: block;
+          width: 30px;
+          height: 30px;
+          color: #606266;
+          text-align: center;
+          margin: 5px 0;
+          box-sizing: border-box;
+          line-height: 30px;
+        }
+        .day-every{
+          cursor: pointer;
+          border-radius: 50%;
+          background: #fafafa;
+        }
+        .notThisMonth {
+          color: #C0C4CC;
+        }
+        .nowDay {
+          color: $primary;
+        }
+        .activeDate{
+            background: $primary;
+            color: white;
+        }
+      }
+    }
+    .picker-enter,
+    .picker-leave-to {
+      height: 0;
+      opacity: 0;
+    }
+    .picker-enter-active,
+    .picker-leave-active {
+      transition: all 0.2s ease-in-out;
+    }
+  }

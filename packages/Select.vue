@@ -1,6 +1,7 @@
 <template>
   <div class="lb-select" @click="click" v-click-outside>
-    <lb-input :value="labelValue" v-on="{...$listeners}" clearable></lb-input>
+    <i class="lb-icon-xiajiantou lb-select-allow" :class="{rest:show}" v-if="!clearable"></i>
+    <lb-input :value="labelValue" v-on="{...$listeners}" readonly clearable></lb-input>
     <transition
       name="fade"
       @beforeEnter="beforeEnter"
@@ -21,7 +22,15 @@
 <script>
 export default {
   name: "lb-select",
-  props: ["value"],
+  props:{
+    value:{
+      default:''
+    },
+        clearable: {
+      type: Boolean,
+      default: false
+    },
+  },
   model: {
     prop: "value",
   },

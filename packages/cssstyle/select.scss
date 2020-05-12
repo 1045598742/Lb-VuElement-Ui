@@ -28,6 +28,20 @@
       //  background-color: #000;
       //  border:1px solid yellow
   }
+  .lb-select-allow{
+    position: absolute;
+    right: 15px;
+    z-index: 1;
+    top: 14px;
+    transform:rotate(0deg);
+    cursor: pointer;
+    transition: all .2s;
+    transform-origin: center;
+    &.rest{
+      transform:rotate(180deg);
+    }
+  }
+
   }
   .lb-select-opiton__group {
     position: absolute;

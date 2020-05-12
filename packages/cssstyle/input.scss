@@ -25,12 +25,13 @@
    }
    [class*=lb-input-icon]{
     top: 50%;
+    color: #cdd1db;
     transform: translateY(-50%);
     cursor: pointer;
     position: absolute;
     font-size: 14px;
    }
-   .lb-icon-test44,.lb-input-next-icon{
+   .lb-icon-clear,.lb-input-next-icon{
        right: 15px;
    }
    .lb-input-prev-icon{

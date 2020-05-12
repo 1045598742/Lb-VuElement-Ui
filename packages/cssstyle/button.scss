@@ -87,9 +87,6 @@
     @include button-radius(50%);
 
 }
-.lb-button_round{
-  @include button-radius(20px);
-}
 .lb-button_plant{
 
   @each $type,$color in(
@@ -132,8 +129,11 @@
    &.lb-button_#{$type}{
       // background:#{$color};
       &,&:hover,&:active,&:focus{
-        @include border-style(lighten($color,10%),lighten($color,10%),lighten($color,25%));
+        @include border-style(lighten($color,10%),white,lighten($color,10%));
       }
     }
   }
+}
+.lb-button_round{
+  @include button-radius(20px !important);
 }

@@ -4,7 +4,7 @@
     :class="{ 'lb-input-padding-prev':prevIcon,'lb-input-padding-next':nextIcon||clearable }"
   >
     <template v-if="type=='text'">
-      <i class="lb-input-icon lb-icon-test44" clear="clear" v-show="clearable&&value" @click="$emit('input','')"></i>
+      <i class="lb-input-icon lb-icon-clear" clear="clear" v-show="clearable&&value" @click="$emit('input','')"></i>
       <i class="lb-input-icon-prev" :class="[prevIcon]" v-if="prevIcon"></i>
       <input class="lb-input_inner" v-bind="$props" @input="inputChange" />
       <i class="lb-input-icon-next" :class="[nextIcon]" v-if="nextIcon&&!clearable"></i>
@@ -41,7 +41,7 @@ export default {
       type: Boolean,
       default: false
     },
-    clearable: {
+    readonly: {
       type: Boolean,
       default: false
     },

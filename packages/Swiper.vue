@@ -1,8 +1,17 @@
 <template>
-  <div class="lb-swiper-box" :style="{height:`${height}px`}" @mouseenter="mouseEnter" @mouseleave="mouseLeave">
+  <div
+    class="lb-swiper-box"
+    :style="{height:`${height}px`}"
+    @mouseenter="mouseEnter"
+    @mouseleave="mouseLeave"
+  >
     <slot></slot>
-    <div class="left" @click="arrow(true)"><i class="lb-icon-zuo"></i></div>
-    <div class="right" @click="arrow(false)"><i class="lb-icon-you"></i></div>
+    <div class="left" @click="arrow(true)">
+      <i class="lb-icon-zuo"></i>
+    </div>
+    <div class="right" @click="arrow(false)">
+      <i class="lb-icon-you"></i>
+    </div>
     <ul class="circle-box">
       <li
         class="circle"
@@ -18,17 +27,17 @@
 export default {
   name: "lb-swiper",
   props: {
-    height:{
-      type:Number,
-      default:300,
+    height: {
+      type: Number,
+      default: 300
     },
-    autoPlay:{
-      type:Boolean,
-      default:true,
+    autoPlay: {
+      type: Boolean,
+      default: false
     },
-    interval:{
-      type:Number,
-      default:3000,
+    interval: {
+      type: Number,
+      default: 3000
     }
   },
   data() {
@@ -44,7 +53,6 @@ export default {
   },
   methods: {
     default() {
-      
       clearInterval(this.timer);
       this.timer = null;
       if (this.childrenLength) {
@@ -85,9 +93,7 @@ export default {
       this.timer = null;
     },
     mouseLeave() {
-      this.$nextTick(() => {
-        this.default();
-      });
+      this.autoPlay && this.default();
     },
     circleEnter(index) {
       if (index == this.activeIndex) return;
@@ -98,16 +104,18 @@ export default {
     }
   },
   watch: {
-    autoplay:{
-      handler(isplay){
-        if(isplay){
-          this.default()
-        }else{
-           clearInterval(this.timer);
-      this.timer = null;
+    autoPlay: {
+      handler(isplay) {
+        if (isplay) {
+          this.$nextTick(() => {
+            this.default();
+          });
+        } else {
+          clearInterval(this.timer);
+          this.timer = null;
         }
       },
-       immediate: true
+      immediate: true
     }
   },
   mounted() {
