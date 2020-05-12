@@ -1,8 +1,8 @@
 <template>
   <div class="lb-swiper-box" :style="{height:`${height}px`}" @mouseenter="mouseEnter" @mouseleave="mouseLeave">
     <slot></slot>
-    <div class="left" @click="arrow(true)"></div>
-    <div class="right" @click="arrow(false)"></div>
+    <div class="left" @click="arrow(true)"><i class="lb-icon-zuo"></i></div>
+    <div class="right" @click="arrow(false)"><i class="lb-icon-you"></i></div>
     <ul class="circle-box">
       <li
         class="circle"
@@ -20,7 +20,7 @@ export default {
   props: {
     height:{
       type:Number,
-      default:400,
+      default:300,
     },
     autoPlay:{
       type:Boolean,
@@ -112,7 +112,7 @@ export default {
   },
   mounted() {
     this.children = this.$children.filter(
-      e => e.$options.name === "swiperItem"
+      e => e.$options.name === "lb-swiper-item"
     );
     this.childrenLength = this.children.length - 1;
   },
@@ -123,69 +123,3 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-.lb-swiper-box {
-  margin: auto;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  &:hover {
-    .left {
-      left: 10px;
-      opacity: 0.5;
-    }
-    .right {
-      right: 10px;
-      opacity: 0.5;
-    }
-  }
-  .swiper-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .swiper-item.show {
-    z-index: 1;
-  }
-  .left {
-    left: -50px;
-  }
-  .right {
-    right: -50px;
-  }
-  .left,
-  .right {
-    z-index: 2;
-    transition: all 0.5s;
-    opacity: 0;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: white;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-  .circle-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    z-index: 2;
-    transform: translateX(-50%);
-  }
-  .circle {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin: 5px;
-    background: white;
-  }
-  .activeCircle {
-    background: orange;
-  }
-}
-</style>

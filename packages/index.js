@@ -7,7 +7,7 @@ import Tree from "./Tree.vue";
 import Select from "./Select.vue";
 import Option from "./Option.vue";
 import Input from "./Input.vue";
-
+import './cssstyle/index.scss'
 
 //把所有组件存储起来
 

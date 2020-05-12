@@ -1,0 +1,27 @@
+.lb-swiper-item {
+    width: 100%;
+    height: 100%;
+    img {
+      height: 100%;
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+  }
+  
+  .lb-swiper-enter-active,
+  .lb-swiper-leave-active {
+    transition: all 0.4s linear;
+  }
+  .lb-swiper-enter {
+    transform: translateX(100%);
+  }
+  .lb-swiper-leave-to {
+    transform: translateX(-100%);
+  }
+  .lb-swiper-enter.reverse {
+    transform: translateX(-100%);
+  }
+  .lb-swiper-leave-to.reverse {
+    transform: translateX(100%);
+  }

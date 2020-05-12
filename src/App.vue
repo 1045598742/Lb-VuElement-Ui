@@ -1,6 +1,5 @@
 <template>
   <div id="app" class="dd">
-    <el-input v-model="inputs"></el-input>
     <lb-input type="textarea" v-model="inputs" placeholder="请输入密码" clearable></lb-input>
     <button @click="click">点我</button>
     <!-- 下拉 -->
@@ -12,9 +11,15 @@
         :value="item.value"
       ></lb-option>
     </lb-select>
+
+      <lb-button type="warning"> warning </lb-button>
+          <lb-swiper autoPlay>
+            <lb-swiper-item class="swiper-item_demo">1</lb-swiper-item>
+            <lb-swiper-item class="swiper-item_demo">2</lb-swiper-item>
+            <lb-swiper-item class="swiper-item_demo">3</lb-swiper-item>
+          </lb-swiper>
      <!-- 按钮 -->
     <!-- <lb-button> default </lb-button>
-    <lb-button type="warning"> warning </lb-button>
     <lb-button type="success"> success </lb-button>
     <lb-button type="danger"> danger </lb-button>
     <lb-button type="info"> info </lb-button>
@@ -88,6 +93,9 @@ export default {
 * {
   margin: 0;
   padding: 0;
+}
+.swiper-item_demo{
+  background: red;
 }
 .html{
   color: red;
