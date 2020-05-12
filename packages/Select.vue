@@ -1,7 +1,7 @@
 <template>
   <div class="lb-select" @click="click" v-click-outside>
     <i class="lb-icon-xiajiantou lb-select-allow" :class="{rest:show}" v-if="!clearable"></i>
-    <lb-input :value="labelValue" v-on="{...$listeners}" readonly clearable></lb-input>
+    <lb-input :value="labelValue" v-on="{...$listeners}" readonly :clearable="clearable"></lb-input>
     <transition
       name="fade"
       @beforeEnter="beforeEnter"
