@@ -41,6 +41,7 @@
               activeDate:
                 arr[7 * (i - 1) + j - 1].type === 'default' &&
                 dateActive.month == month &&
+                dateActive.year == year &&
                 dateActive.day === arr[7 * (i - 1) + j - 1].value,
               notThisMonth: arr[7 * (i - 1) + j - 1].type != 'default',
               nowDay: nowDay(arr[7 * (i - 1) + j - 1])
