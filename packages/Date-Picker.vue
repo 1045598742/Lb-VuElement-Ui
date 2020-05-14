@@ -11,7 +11,7 @@
         <li class="week-day">
           <span
             @click="yearSub"
-            @mousedown="hehe('mousedown')"
+            @mousedown="mouseEvent('mousedown')"
             @mouseup="clearTimer"
             @mouseout="clearTimer"
           >
@@ -116,7 +116,7 @@ export default {
     };
   },
   methods: {
-    hehe(title) {
+    mouseEvent(title) {
       // this.timer = setInterval(() => {
       //   console.log(title);
       // }, 200);
@@ -177,11 +177,9 @@ export default {
     },
     yearAdd() {
       this.year += 1;
-      // this.arr()
     },
     yearSub() {
       this.year -= 1;
-      // this.arr()
     },
     monthAdd() {
       if (this.month < 12) {
@@ -189,7 +187,6 @@ export default {
       } else {
         this.month = 1;
       }
-      // this.arr()
     },
     monthSub() {
       if (this.month < 2) {
@@ -197,7 +194,6 @@ export default {
       } else {
         this.month -= 1;
       }
-      // this.arr()
     }
   },
   computed: {
@@ -224,9 +220,6 @@ export default {
       }
       return [...prevArr, ...arr];
     }
-  },
-  mounted() {
-    // this.arr()
   }
 };
 </script>
