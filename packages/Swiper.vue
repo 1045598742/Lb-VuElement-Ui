@@ -32,7 +32,7 @@ export default {
   name: "lb-swiper",
   props: {
     height: {
-      type: Number,
+      type: [Number,String],
       default: 300
     },
     autoPlay: {

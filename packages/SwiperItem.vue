@@ -12,7 +12,6 @@
       
       :class="{
         reverse: !isSilde?reverse:false,
-        mainShow: $parent.activeIndex === index && childrenMode==='horizontal',
         transition: mounteded && isSilde&& childrenMode==='horizontal',
         'lb-swiper-item_slide': isSilde && childrenMode==='horizontal'
       }"
@@ -115,26 +114,3 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-// .lb-swiper-item_slide {
-//   display: inline-block !important;
-//   vertical-align: middle !important;
-//   box-sizing: border-box !important;
-//   width: 50% !important;
-//   height: 100% !important;
-//   position: absolute !important;
-//   left: 0 !important;
-//   top: 0 !important;
-
-//   // z-index: 1;
-// }
-.transition {
-  transition: transform 0.4s ease-in-out;
-}
-.mainShow {
-  z-index: 2;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%,-50%);
-}
-</style>
