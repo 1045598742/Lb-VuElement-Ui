@@ -9,19 +9,59 @@
     }
   }
   
-  .lb-swiper-enter-active,
-  .lb-swiper-leave-active {
-    transition: all 0.4s linear;
+  .lb-swiper_horizontal-enter-active,
+  .lb-swiper_horizontal-leave-active,
+  .lb-swiper_vertical-enter-active,
+  .lb-swiper_vertical-leave-active{
+    transition: all .3s ease-in-out;
   }
-  .lb-swiper-enter {
+
+
+  // 横向
+  .lb-swiper_horizontal-enter {
     transform: translateX(100%);
   }
-  .lb-swiper-leave-to {
+  .lb-swiper_horizontal-leave-to {
     transform: translateX(-100%);
   }
-  .lb-swiper-enter.reverse {
+  .lb-swiper_horizontal-enter.reverse {
     transform: translateX(-100%);
   }
-  .lb-swiper-leave-to.reverse {
+  .lb-swiper_horizontal-leave-to.reverse {
     transform: translateX(100%);
   }
+
+  // 纵向
+  .lb-swiper_vertical-enter {
+    transform: translateY(100%);
+  }
+  .lb-swiper_vertical-leave-to {
+    transform: translateY(-100%);
+  }
+  .lb-swiper_vertical-enter.reverse {
+    transform: translateY(-100%);
+  }
+  .lb-swiper_vertical-leave-to.reverse {
+    transform: translateY(100%);
+  }
+
+  .lb-swiper-item_slide {
+    display: inline-block ;
+    vertical-align: middle ;
+    box-sizing: border-box ;
+    width: 50% ;
+    height: 100%;
+    position: absolute ;
+    left: 0;
+    top: 0;
+  }
+    .transition {
+      transition: transform 0.3s ease-in-out;
+    }
+    .mainShow {
+      z-index: 2;
+      // top: 50%;
+      // left: 50%;
+      // transform: translate(-50%,-50%);
+    }
+  

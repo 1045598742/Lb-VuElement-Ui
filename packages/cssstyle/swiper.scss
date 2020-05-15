@@ -3,14 +3,6 @@
     width: 100%;
     position: relative;
     overflow: hidden;
-    &:hover {
-      .left {
-        left: 10px;
-      }
-      .right {
-        right: 10px;
-      }
-    }
     .lb-swiper-item {
       position: absolute;
       top: 0;
@@ -18,12 +10,6 @@
     }
     .lb-swiper-item.show {
       z-index: 1;
-    }
-    .left {
-      left: -50px;
-    }
-    .right {
-      right: -50px;
     }
     .left,
     .right {
@@ -34,8 +20,6 @@
       border-radius: 50%;
       background-color: rgba(255,255,255,.4);
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
       text-align: center;
       cursor: pointer;
       i{
@@ -46,13 +30,10 @@
     }
     .circle-box {
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;
       position: absolute;
-      bottom: 20px;
-      left: 50%;
       z-index: 6;
-      transform: translateX(-50%);
+     
     }
     .circle {
       width: 10px;
@@ -63,5 +44,58 @@
     }
     .activeCircle {
       background: orange;
+    }
+  }
+
+  .lb-swiper_horizontal{
+    &:hover {
+      .left {
+        left: 10px;
+      }
+      .right {
+        right: 10px;
+      }
+    }
+    .left {
+      left: -50px;
+    }
+    .right {
+      right: -50px;
+    }
+    .left,.right{
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .circle-box {
+      bottom: 10px;
+      left: 50%;
+      flex-direction: row;
+      transform: translateX(-50%);
+    }
+  }
+  .lb-swiper_vertical{
+    &:hover {
+      .left {
+        top: 10px;
+      }
+      .right {
+        bottom: 10px;
+      }
+    }
+    .left {
+      top: -50px;
+    }
+    .right {
+      bottom: -50px;
+    }
+    .left,.right{
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .circle-box {
+      right: 10px;
+      top: 50%;
+      flex-direction: column;
+      transform: translateY(-50%);
     }
   }

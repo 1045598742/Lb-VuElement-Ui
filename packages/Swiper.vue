@@ -1,19 +1,22 @@
 <template>
   <div
-  ref="swiper"
+    ref="lbSwiper"
     class="lb-swiper-box"
-    :style="{height:`${height}px`}"
+    :class="[`lb-swiper_${childrenMode}`]"
+    :style="{ height: heightStyle }"
     @mouseenter="mouseEnter"
     @mouseleave="mouseLeave"
   >
     <slot></slot>
-    <div class="left" @click="arrow(true)">
-      <i class="lb-icon-zuo"></i>
+    <div class="left" @click="arrow(true)" v-if="showAllow">
+      <i
+        :class="childrenMode == 'vertical' ? 'lb-icon-shangjiantou' : 'lb-icon-zuo'"
+      ></i>
     </div>
-    <div class="right" @click="arrow(false)">
-      <i class="lb-icon-you"></i>
+    <div class="right" @click="arrow(false)" v-if="showAllow">
+      <i :class="childrenMode == 'vertical' ? 'lb-icon-xiajiantou' : 'lb-icon-you'"></i>
     </div>
-    <ul class="circle-box">
+    <ul class="circle-box" v-if="showPoint">
       <li
         class="circle"
         @mouseenter="circleEnter(index - 1)"
@@ -40,10 +43,22 @@ export default {
       type: Boolean,
       default: false
     },
+    showAllow: {
+      type: Boolean,
+      default: true
+    },
+    showPoint: {
+      type: Boolean,
+      default: true
+    },
     interval: {
       type: Number,
       default: 3000
-    }
+    },
+    mode: {
+      type: String,
+      default: 'horizontal'
+    },
   },
   data() {
     return {
@@ -54,7 +69,7 @@ export default {
       timer: null,
       finish: true,
       timeOut: null,
-      clientWidth:0
+      clientWidth: 0
     };
   },
   methods: {
@@ -91,7 +106,7 @@ export default {
         });
         this.timeOut = setTimeout(() => {
           this.finish = true;
-        }, 500);
+        }, 300);
       }
     },
     mouseEnter() {
@@ -124,12 +139,27 @@ export default {
       immediate: true
     }
   },
+  computed: {
+    heightStyle() {
+      let height = `${this.height}`.match(/\d*/g)[0];
+      return height === '' ? '0px' : `${height}px`
+    },
+    childrenMode(){
+      if(this.mode === 'vertical'){
+          return this.slide?'horizontal':'vertical'
+      }else{
+        return 'horizontal'
+      }
+    }
+  },
   mounted() {
     this.children = this.$children.filter(
       e => e.$options.name === "lb-swiper-item"
     );
     this.childrenLength = this.children.length - 1;
-    this.clientWidth = this.$refs.swiper.clientWidth;
+    this.$nextTick(() => {
+      this.clientWidth = this.$refs.lbSwiper.clientWidth;
+    })
   },
   beforeDestroy() {
     this.mouseEnter();

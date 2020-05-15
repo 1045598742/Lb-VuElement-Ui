@@ -3,25 +3,31 @@
     <div id="nav">
       <button @click="show = !show">点击{{value}}</button>
       <lb-date-picker v-model="value"></lb-date-picker>
-      <div style="width:900px;margin:auto" v-if="false">
-          <lb-swiper slide>
+      <div style="width:900px;margin:auto">
+          <lb-swiper autoPlay slide>
         <lb-swiper-item class="demo-item">
-          <img src="../src/assets/1.jpg" alt="">
+          1
+          <!-- <img src="../src/assets/1.jpg" alt=""> -->
         </lb-swiper-item>
         <lb-swiper-item class="demo-item">
-          <img src="../src/assets/2.jpg" alt="">
+          2
+          <!-- <img src="../src/assets/2.jpg" alt=""> -->
         </lb-swiper-item>
         <lb-swiper-item class="demo-item">
-          <img src="../src/assets/3.jpg" alt="">
+          3
+          <!-- <img src="../src/assets/3.jpg" alt=""> -->
         </lb-swiper-item>
         <lb-swiper-item class="demo-item">
-          <img src="../src/assets/1.jpg" alt="">
+          4
+          <!-- <img src="../src/assets/1.jpg" alt=""> -->
         </lb-swiper-item>
         <lb-swiper-item class="demo-item">
-          <img src="../src/assets/2.jpg" alt="">
+          5
+          <!-- <img src="../src/assets/2.jpg" alt=""> -->
         </lb-swiper-item>
         <lb-swiper-item class="demo-item">
-          <img src="../src/assets/3.jpg" alt="">
+          6
+          <!-- <img src="../src/assets/3.jpg" alt=""> -->
         </lb-swiper-item>
       </lb-swiper>
       </div>
@@ -34,8 +40,13 @@ var Dates = new Date();
 export default {
   data () {
     return {
-      value:1589337094000
+      value:1589337094000,
+      click:'mousemove'
     }
+  },
+  methods:{
+  },
+  mounted(){
   }
 };
 </script>
