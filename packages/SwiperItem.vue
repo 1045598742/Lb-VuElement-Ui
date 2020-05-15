@@ -61,7 +61,7 @@ export default {
       let activeIndex = this.$parent.activeIndex; // 当前主显的索引
       let clientWidth = this.$parent.clientWidth; // 容器的宽度
       let mainWidth = clientWidth / 2;// 中间大盒子的宽度
-      let width = mainWidth / 2; //主显轮播图距离左边的距离
+      let width =  (clientWidth-mainWidth) / 2; //主显轮播图距离左边的距离
       let smallWidth = (clientWidth / 2) * 0.8; // 两侧盒子的宽度
       let leftXWidth = - (mainWidth - smallWidth) / 2; //左侧图需要偏移的宽度
       let rightXWidth = clientWidth - smallWidth + leftXWidth; //右侧图需要偏移的位置

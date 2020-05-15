@@ -1,18 +1,18 @@
 import Vue from 'vue'
 import App from './App.vue'
 import 'element-ui/lib/theme-chalk/index.css';
-import '../packages/cssstyle/index.scss';
-import LbElement from "../packages";
+// import '../packages/cssstyle/index.scss';
+// import LbElement from "../packages";
 // import {Pagination} from "../packages";
 import Ele from 'element-ui'
 // import WyButton from "wuhanbujiayou";
 // import router from './router'
 // import store from './store'
-// import lbui from 'lb-vue-ui';
-// import 'lb-vue-ui/Lb-vueUi.css'
-// Vue.use(lbui)
+import lbui from 'lb-vue-ui';
+import 'lb-vue-ui/Lb-vueUi.css'
+Vue.use(lbui)
 Vue.config.productionTip = false
-Vue.use(LbElement)
+// Vue.use(LbElement)
 // Vue.use(Pagination)
 Vue.use(Ele)
 new Vue({
