@@ -21,6 +21,9 @@
         span{
           cursor: pointer;
           text-align: center;
+          &:hover i {
+            color: $primary;
+          }
         }
       }
       li {

@@ -1,5 +1,6 @@
 <template>
   <div
+  ref="swiper"
     class="lb-swiper-box"
     :style="{height:`${height}px`}"
     @mouseenter="mouseEnter"
@@ -35,6 +36,10 @@ export default {
       type: Boolean,
       default: false
     },
+    slide: {
+      type: Boolean,
+      default: false
+    },
     interval: {
       type: Number,
       default: 3000
@@ -48,7 +53,8 @@ export default {
       reverse: false,
       timer: null,
       finish: true,
-      timeOut: null
+      timeOut: null,
+      clientWidth:0
     };
   },
   methods: {
@@ -123,6 +129,7 @@ export default {
       e => e.$options.name === "lb-swiper-item"
     );
     this.childrenLength = this.children.length - 1;
+    this.clientWidth = this.$refs.swiper.clientWidth;
   },
   beforeDestroy() {
     this.mouseEnter();

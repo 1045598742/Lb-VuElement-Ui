@@ -186,11 +186,13 @@ export default {
         this.month += 1;
       } else {
         this.month = 1;
+        this.year++;
       }
     },
     monthSub() {
       if (this.month < 2) {
         this.month = 12;
+        this.year--;
       } else {
         this.month -= 1;
       }
