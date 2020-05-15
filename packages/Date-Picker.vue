@@ -54,6 +54,8 @@
   </div>
 </template>
 <script>
+import {timeSeat} from './utils/timeFormat'
+
 var Dates = new Date();
 export default {
   name: 'lb-date-picker',
@@ -75,7 +77,7 @@ export default {
           this.year = year;
           this.month = month;
           this.date = day;
-          this.value = `${this.dateActive.year}-${this.dateActive.month}-${this.dateActive.day}`
+          this.value = `${this.dateActive.year}-${ timeSeat(this.dateActive.month)}-${timeSeat(this.dateActive.day)}`
         }
       },
       immediate: true
@@ -99,7 +101,6 @@ export default {
   },
   data() {
     return {
-      value1: "",
       day: ["日", "一", "二", "三", "四", "五", "六"],
       year: Dates.getFullYear(),
       month: Dates.getMonth() + 1,
@@ -142,7 +143,6 @@ export default {
     },
     dayClick({ type, value }) {
       this.month = this.getMonth(type, value);
-      this.value = `${this.year}-${this.month}-${value}`;
       Object.assign(this.dateActive, {
         year: this.year,
         month: this.month,
