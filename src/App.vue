@@ -6,8 +6,8 @@
       </div>
       <!-- <button @click="show = !show">点击{{value}}</button>
       <lb-date-picker v-model="value"></lb-date-picker> -->
-      <div style="width:820px;margin:auto" >
-        <lb-swiper autoPlay slide :height="200">
+      <div style="width:100%;margin:auto" >
+        <lb-swiper autoPlay slide :height="400">
           <lb-swiper-item class="demo-item">
             <img src="../src/assets/111.jpg" alt="">
             <!-- <img src="../src/assets/1.jpg" alt=""> -->
@@ -73,6 +73,7 @@ export default {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 20px;
   }
 }
 .demo-item:nth-child(2n) {

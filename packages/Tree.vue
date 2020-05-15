@@ -35,7 +35,7 @@
   </ul>
 </template>
 <script>
-import ElCollapseTransition from "element-ui/src/transitions/collapse-transition";
+// import ElCollapseTransition from "element-ui/src/transitions/collapse-transition";
 export default {
   name: "tree",
   props: {
@@ -109,7 +109,6 @@ export default {
 </script>
 <style lang="scss">
 ul {
-  // padding-left: 20px;
   box-sizing: border-box;
   li {
     overflow: hidden;
