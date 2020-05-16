@@ -1,15 +1,12 @@
 .lb-input{
     position: relative;
-    .lb-input_inner,.el-textarea_inner{
+    .lb-input_inner,.lb-textarea_inner{
         width: 100%;
         background-color: white;
         box-sizing: border-box;
-        border-radius: 4px;
        outline: 0;
        border: 1px solid $border-color;
-       padding: 0 15px;
        color: $font-color;
-       transition: all .2s;
        &:hover{
         border-color: darken($border-color, 5%) ;
     }
@@ -18,10 +15,16 @@
     }
     }
    .lb-input_inner{
-      
+    transition: all .2s;
+    padding: 0 15px;
+    border-radius: 4px;
        height: 40px;
        line-height: 40px;
        cursor: pointer;
+   }
+   .lb-textarea_inner{
+       padding: 10px 15px;
+       max-width: 100%;
    }
    [class*=lb-input-icon]{
     top: 50%;
@@ -36,6 +39,13 @@
    }
    .lb-input-icon-prev{
     left: 10px;
+   }
+   input::-webkit-outer-spin-button,
+   input::-webkit-inner-spin-button {
+       -webkit-appearance: none;
+   }
+   input[type="number"] {
+       -moz-appearance: textfield;
    }
 }
 .lb-input-padding-prev{

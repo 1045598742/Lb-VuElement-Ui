@@ -1,49 +1,17 @@
 <template>
   <div id="picker">
     <div id="nav">
-      <div class="transform">
-        <div class="inner"></div>
-      </div>
-      <!-- <button @click="show = !show">点击{{value}}</button>
-      <lb-date-picker v-model="value"></lb-date-picker> -->
-      <div style="width:100%;margin:auto" >
-        <lb-swiper autoPlay slide :height="400">
-          <lb-swiper-item class="demo-item">
-            <img src="../src/assets/111.jpg" alt="">
-            <!-- <img src="../src/assets/1.jpg" alt=""> -->
-          </lb-swiper-item>
-          <lb-swiper-item class="demo-item">
-             <img src="../src/assets/222.jpg" alt="">
-            <!-- <img src="../src/assets/2.jpg" alt=""> -->
-          </lb-swiper-item>
-          <lb-swiper-item class="demo-item">
-             <img src="../src/assets/333.jpg" alt="">
-            <!-- <img src="../src/assets/3.jpg" alt=""> -->
-          </lb-swiper-item>
-          <lb-swiper-item class="demo-item">
-             <img src="../src/assets/ljj.jpg" alt="">
-            <!-- <img src="../src/assets/1.jpg" alt=""> -->
-          </lb-swiper-item>
-          <lb-swiper-item class="demo-item">
-             <img src="../src/assets/zbc.jpg" alt="">
-            <!-- <img src="../src/assets/2.jpg" alt=""> -->
-          </lb-swiper-item>
-          <lb-swiper-item class="demo-item">
-             <img src="../src/assets/lyj.jpg" alt="">
-            <!-- <img src="../src/assets/3.jpg" alt=""> -->
-          </lb-swiper-item>
-        </lb-swiper>
-      </div>
-      <!-- <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul> -->
+      <div>value:{{value}}</div>
+      <lb-pagination
+        :total="total"
+        :pageLimit.sync="limit"
+        :pageCount="pageCount"
+        :pageIndex.sync="pageIndex"
+        @pageIndexChange="pageIndexChange"
+        @pageLimitChange="pageLimitChange"
+      ></lb-pagination>
+      <!-- <lb-input type="textarea" v-model="value" @blur="blur" @focus="focus" @input="inputs" @change="change"  resize="horizontal"/>
+      <lb-input v-model="value" @blur="blur" @focus="focus" @input="inputs" @change="change"  resize="horizontal"/>-->
     </div>
   </div>
 </template>
@@ -53,14 +21,34 @@ export default {
   data() {
     return {
       value: 1589337094000,
-      click: 'mousemove'
-    }
+      click: "mousemove",
+      pageIndex: 1,
+      limit: 10,
+      pageCount: 7,
+      total: 1001
+    };
   },
   methods: {
-
+    blur(ev) {
+      console.log(ev, "blur");
+    },
+    focus(ev) {
+      console.log(ev, "focus");
+    },
+    inputs(ev) {
+      console.log(ev, "inputs");
+    },
+    change(ev) {
+      console.log(ev, "change");
+    },
+    pageIndexChange(val){
+      console.log(val,'pageIndexChange');
+    },
+    pageLimitChange(val){
+        console.log(val,'pageLimitChange');
+    },
   },
-  mounted() {
-  }
+  mounted() {}
 };
 </script>
 <style lang="scss">
@@ -68,21 +56,5 @@ export default {
   margin: 0;
   padding: 0;
 }
-.demo-item{
-  img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-  }
-}
-.demo-item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.demo-item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
-
 </style>
 
