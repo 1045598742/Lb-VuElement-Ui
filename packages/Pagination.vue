@@ -58,7 +58,7 @@
       ref="next"
       v-if="layoutShowObject.next"
       class="lb-pagination_next"
-      :class="{disable:pageIndex==maxPageIndex}"
+      :class="{disable:pageIndex==maxPageIndex||maxPageIndex<=1}"
       @click="prevOrNextClick(true)"
     >
       <i class="lb-icon-qianjin"></i>
@@ -88,7 +88,7 @@ export default {
     total: {
       // 总条数
       type: Number,
-      default: 80
+      default: 0
     },
     pageLimit: {
       // 每页条数

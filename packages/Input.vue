@@ -8,7 +8,7 @@
         class="lb-input-icon lb-icon-clear"
         clear="clear"
         v-show="clearable&&value"
-        @click="$emit('model','')"
+        @click="$emit('input','')"
       ></i>
       <i class="lb-input-icon-prev" :class="[prevIcon]" v-if="prevIcon"></i>
       <input
@@ -100,8 +100,7 @@ export default {
     },
   },
   model: {
-    prop: "value",
-    event: "model"
+    prop: "value"
   },
   computed: {
     bindProps() {
@@ -125,7 +124,6 @@ export default {
   methods: {
     inputEvent(ev, listenerName) {
       if (listenerName == "input") {
-        this.$emit("model", ev.target.value);
         this.$emit("input", ev.target.value);
       }
       if (listenerName == "change") {

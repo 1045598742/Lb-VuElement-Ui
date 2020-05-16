@@ -40,11 +40,13 @@
   text-align: center;
   box-sizing: border-box;
   padding: 11px 20px;
+  line-height: 1;
   i{
     display: inline-block;
     vertical-align:baseline;
     position: relative;
-    top: 1px;
+    // top: 1px;
+
     text-align: left;
     font-style: normal;
     text-indent: 0;
