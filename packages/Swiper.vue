@@ -160,6 +160,9 @@ export default {
     this.$nextTick(() => {
       this.clientWidth = this.$refs.lbSwiper.clientWidth;
     })
+        window.addEventListener('resize',()=>{
+      this.clientWidth = this.$refs.lbSwiper.clientWidth;
+    })
   },
   beforeDestroy() {
     this.mouseEnter();
