@@ -122,6 +122,9 @@ export default {
       this.$nextTick(() => {
         this.activeIndex = index;
       });
+    },
+    getClientWidth(){
+      this.clientWidth = this.$refs.lbSwiper.clientWidth;
     }
   },
   watch: {
@@ -160,14 +163,15 @@ export default {
     this.$nextTick(() => {
       this.clientWidth = this.$refs.lbSwiper.clientWidth;
     })
-        window.addEventListener('resize',()=>{
-      this.clientWidth = this.$refs.lbSwiper.clientWidth;
-    })
+   if(this.slide){
+      window.addEventListener('resize',this.getClientWidth)
+   }
   },
   beforeDestroy() {
     this.mouseEnter();
     clearTimeout(this.timeOut);
     this.timeOut = null;
+    window.removeEventListener('resize',this.getClientWidth)
   }
 };
 </script>
