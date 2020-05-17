@@ -120,9 +120,7 @@ export default {
       }
     }
   },
-  mounted() {
-    this.layoutFormat();//处理页面布局
-  },
+
   data() {
     return {
       limitSelectValue: this.pageLimit,
@@ -136,6 +134,18 @@ export default {
     limitSelectValue(newValue) {
       // 每页条数变化
       this.emitEvent("pageLimit", +newValue);
+    },
+    layout:{
+      handler(layout){
+        this.$nextTick(()=>{
+               layout.forEach(layoutName => {
+        // 移动布局
+        const layoutDom = this.$refs[layoutName];
+        layoutDom && this.$refs["lb-pagination"].appendChild(layoutDom); // 移动布局
+      });
+        })
+      },
+      immediate:true
     }
   },
   computed: {
@@ -193,14 +203,6 @@ export default {
     }
   },
   methods: {
-    layoutFormat() {
-      if (this.layout.toString() === "limit,prev,page,next,go,total") return; //如果传入的数值和初始值一样不需要操作DOM
-      this.layout.forEach(layoutName => {
-        // 移动布局
-        const layoutDom = this.$refs[layoutName];
-        layoutDom && this.$refs["lb-pagination"].appendChild(layoutDom); // 移动布局
-      });
-    },
     pageClick(ev) {
       //点击页码事件
       const node = ev.target;
