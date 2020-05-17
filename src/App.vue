@@ -11,7 +11,8 @@
         @pageLimitChange="pageLimitChange"
       ></lb-pagination>
       <!-- <lb-input type="textarea" v-model="value" @blur="blur" @focus="focus" @input="inputs" @change="change"  resize="horizontal"/>
-      <lb-input v-model="value" @blur="blur" @focus="focus" @input="inputs" @change="change"  resize="horizontal"/>-->
+      -->
+      <lb-input v-model="value" />
     </div>
   </div>
 </template>

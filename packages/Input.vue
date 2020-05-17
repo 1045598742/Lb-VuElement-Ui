@@ -40,7 +40,7 @@ export default {
   inheritAttrs: false,
   props: {
     value: {
-      type: [String, Number]
+      type: [String, Number,Object]
     },
     type: {
       type: String,
@@ -123,10 +123,11 @@ export default {
   },
   methods: {
     inputEvent(ev, listenerName) {
-      if (listenerName == "input") {
+      console.log(listenerName);
+      if (listenerName === "input") {
+        console.log(ev.target.value);
         this.$emit("input", ev.target.value);
-      }
-      if (listenerName == "change") {
+      }else if (listenerName === "change") {
         this.$emit("change", ev.target.value);
       } else {
         this.$emit(listenerName, ev);
