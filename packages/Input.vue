@@ -123,9 +123,7 @@ export default {
   },
   methods: {
     inputEvent(ev, listenerName) {
-      console.log(listenerName);
       if (listenerName === "input") {
-        console.log(ev.target.value);
         this.$emit("input", ev.target.value);
       }else if (listenerName === "change") {
         this.$emit("change", ev.target.value);

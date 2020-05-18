@@ -13,6 +13,16 @@
       <!-- <lb-input type="textarea" v-model="value" @blur="blur" @focus="focus" @input="inputs" @change="change"  resize="horizontal"/>
       -->
       <lb-input v-model="value" />
+          <lb-switch
+      v-model="value"
+      :custom-value="{ on: 1, off: 0 }"
+      flag-color="whites"
+      @change="change"
+      switchWitch="50px"
+    >
+      <template #on>开启</template>
+      <template #off>关闭</template>
+    </lb-switch>
     </div>
   </div>
 </template>
@@ -21,7 +31,7 @@ var Dates = new Date();
 export default {
   data() {
     return {
-      value: 1589337094000,
+      value: 1,
       click: "mousemove",
       pageIndex: 1,
       limit: 10,
