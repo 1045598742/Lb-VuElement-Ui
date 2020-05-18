@@ -4,7 +4,7 @@
     :class="{disable}"
     :style="{
       backgroundColor,
-      width: switchWidch,
+      width: switchWidth,
       opacity:disable?'0.6':1
     }"
     @click="switchChange"
@@ -53,7 +53,7 @@ export default {
       type: Boolean,
       default: false
     },
-    switchWidch: {
+    switchWidth: {
       type: String,
       validator(width) {
         return true
