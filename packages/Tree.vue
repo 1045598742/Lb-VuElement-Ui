@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="lb-tree">
     <li v-for="(item, index) in data" :key="index">
       <div
         :style="{paddingLeft:`${treeData.level*padding}px`}"
@@ -11,76 +11,91 @@
         @click.stop="activeClick(item)"
       >
         <i
-          :style="{ opacity: item.cList && item.cList.length ? 1 : 0 }"
+          :style="{ opacity: item[option.children] && item[option.children].length ? 1 : 0 }"
           @click="show(index)"
           class="el-icon-caret-right allow"
           :class="{ isRotate: showObj[index] }"
         ></i>
-        <span @click="hehe(item, $event)">{{ item.name }}</span>
+        <span @click="nodeClick(item, $event)">{{ item.name }}</span>
       </div>
-      <div v-if="item.cList && item.cList.length">
-        <el-collapse-transition>
-          <tree
-            v-if="showObj[index]"
-            class="tree"
+      <div v-if="item[option.children] && item[option.children].length">
+        <transition
+          @beforeEnter="beforeEnter"
+          @enter="enter"
+          @afterEnter="afterEnter"
+          @beforeLeave="beforeLeave"
+          @leave="leave"
+          @afterLeave="afterLeave"
+        >
+          <lb-tree
+            v-show="showObj[index]"
+            class="lb-tree_child"
             v-bind="{
-              data: item.cList,
+              data: item[option.children],
               index: index,
+              option
             }"
             v-on="{ ...$listeners }"
-          ></tree>
-        </el-collapse-transition>
+          ></lb-tree>
+        </transition>
       </div>
     </li>
   </ul>
 </template>
 <script>
-// import ElCollapseTransition from "element-ui/src/transitions/collapse-transition";
 export default {
-  name: "tree",
+  name: "lb-tree",
   props: {
     data: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     index: {
       type: Number,
-      default: 0,
+      default: 0
     },
-    padding:{
-      type:Number,
-      default:20
+    padding: {
+      type: Number,
+      default: 20
+    },
+    option:{
+      type:Object,
+      default:()=>{
+        return {
+          label:'name',
+          children:'children'
+        }
+      }
     }
   },
   data() {
     return {
       activeId: null,
-      showObj:{},
+      showObj: {},
       activeLevel: null,
       treeData: {
         level: 0,
-        parent: null,
-      },
+        parent: null
+      }
     };
   },
   methods: {
     show(index) {
-      // this.$set(this.data[index], "show", !this.data[index].show);
       this.$set(this.showObj, index, !this.showObj[index]);
     },
     activeClick({ id }) {
       if (this.activeId === id) return;
       this.$root.$emit("click", this.treeData.level, id);
     },
-    hehe(item) {
-      const index = this.data.findIndex((e) => e.name === item.name);
-      const childrenTree = this.$children.filter((child) => {
-        return child.treeData.parent.data.name === this.data[index].name;
+    nodeClick(item) {
+      const index = this.data.findIndex(e => e[this.option.label] === item[this.option.label]);
+      const childrenTree = this.$children.filter(child => {
+        return child.treeData.parent.data[this.option.label] === this.data[index][this.option.label];
       });
       if (childrenTree.length) {
-        if (childrenTree[0].treeData.parent.data.name == item.name) {
+        if (childrenTree[0].treeData.parent.data[this.option.label] == item[this.option.label]) {
           const arr = [];
-          childrenTree[0].data.forEach((child) => {
+          childrenTree[0].data.forEach(child => {
             const { treeData } = childrenTree[0];
             arr.push({ ...treeData, data: child });
           });
@@ -91,11 +106,42 @@ export default {
       } else {
         this.treeData.children = null;
       }
-      this.$emit("nodeClick", { ...item, ...this.treeData });
+      this.$emit("node-click", item,this.treeData);
     },
+    beforeEnter(el) {
+      el.style.height = "0";
+    },
+
+    enter(el) {
+      if (el.scrollHeight !== 0) {
+        el.style.height = el.scrollHeight + "px";
+      } else {
+        el.style.height = "";
+      }
+      el.style.overflow = "hidden";
+    },
+
+    afterEnter(el) {
+      el.style.height = "";
+    },
+
+    beforeLeave(el) {
+      el.style.height = el.scrollHeight + "px";
+      el.style.overflow = "hidden";
+    },
+
+    leave(el) {
+      if (el.scrollHeight !== 0) {
+        el.style.height = 0;
+      }
+    },
+
+    afterLeave(el) {
+      el.style.height = "";
+    }
   },
   created() {
-    if (this.$parent.$options.name === "tree") {
+    if (this.$parent.$options.name === "lb-tree") {
       const { treeData, data } = this.$parent;
       this.treeData.level = treeData.level + 1;
       this.treeData.parent = { ...treeData, data: data[this.index] };
@@ -104,30 +150,6 @@ export default {
       this.activeId = id;
       this.activeLevel = level;
     });
-  },
+  }
 };
 </script>
-<style lang="scss">
-ul {
-  box-sizing: border-box;
-  li {
-    overflow: hidden;
-  }
-  .lb-tree-node-focus {
-    background-color: #F5F7FA;
-  }
-  .lb-tree-node__contentd {
-    line-height: 26px;
-    cursor: pointer;
-  }
-}
-.tree {
-  transition: all 0.5s ease;
-}
-.allow {
-  transition: transform 0.5s ease;
-}
-.isRotate {
-  transform: rotate(90deg);
-}
-</style>

@@ -9,7 +9,7 @@ import Option from "./Option.vue";
 import Input from "./Input.vue";
 import DatePicker from "./Date-Picker.vue";
 import Switch from "./Switch.vue";
-import './cssstyle/index.scss'
+// import './cssstyle/index.scss'
 
 //把所有组件存储起来
 

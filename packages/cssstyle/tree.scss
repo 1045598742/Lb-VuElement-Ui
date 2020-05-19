@@ -1,0 +1,25 @@
+.lb-tree {
+    box-sizing: border-box;
+    .lb-tree-node-focus {
+      background-color: $success;
+      color: white;
+    }
+    .lb-tree-node__contentd {
+       line-height: 26px;
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      &>span{
+        flex: 1;
+      }
+    }
+    .lb-tree_child {
+    transition: all 0.5s ease;
+  }
+  .allow {
+    transition: transform 0.5s ease;
+  }
+  .isRotate {
+    transform: rotate(90deg);
+  }
+  }
