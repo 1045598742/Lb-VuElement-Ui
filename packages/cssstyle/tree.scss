@@ -1,5 +1,8 @@
 .lb-tree {
     box-sizing: border-box;
+    ul{
+      padding: 0;
+    }
     .lb-tree-node-focus {
       background-color: $success;
       color: white;

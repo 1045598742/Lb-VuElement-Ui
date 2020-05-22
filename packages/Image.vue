@@ -5,7 +5,7 @@
 </template>
 <script>
 let dom = null;
-// import { throttle } from '../plugins/throttle'
+import { throttle } from './utils/throttle'
 export default {
   name:'lb-image',
   props: {

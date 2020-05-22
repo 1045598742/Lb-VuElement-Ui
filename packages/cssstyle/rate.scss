@@ -1,0 +1,30 @@
+.lb-rate {
+    .lb-rate_every {
+      padding-right: 10px;
+      display: inline-block;
+      cursor: pointer;
+      transition: all 0.3s linear;
+      height: 18px;
+      width: 18px;
+      line-height: 18px;
+      &:not(.disable):hover {
+        transform: scale(1.1);
+      }
+      i {
+        font-size: 16px;
+      }
+    }
+    .rate-outer {
+      position: relative;
+      color: rgb(198, 209, 222);
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      .rate-inner {
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }

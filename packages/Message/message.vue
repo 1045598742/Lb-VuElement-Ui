@@ -9,6 +9,7 @@
 
 <script>
 export default {
+  name:'lb-message'
 }
 </script>
 <style scoped>

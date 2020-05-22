@@ -1,6 +1,14 @@
 <template>
   <div id="picker">
     <lb-tree :data="arr" @nodeClick="nodeClick" :option="{label:'name',children:'cList'}"></lb-tree>
+    <lb-rate v-model="value"></lb-rate>
+    <el-rate
+      v-model="value"
+      :max="12"
+      show-score
+      text-color="#ff9900"
+      score-template="{value}">
+    </el-rate>
   </div>
 </template>
 <script>
@@ -41,7 +49,8 @@ export default {
             },
           ]
         }
-      ]
+      ],
+      value:0
     };
   },
   methods: {

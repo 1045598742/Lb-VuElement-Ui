@@ -80,7 +80,7 @@ export default {
       el.style.overflow = "hidden";
     },
     afterEnter(el) {
-      el.style.overflow = "";
+      el.style.overflow = "hidden";
     },
     beforLeave(el) {
       
