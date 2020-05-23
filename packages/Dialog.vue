@@ -1,7 +1,7 @@
 <template>
   <transition name="lb-dialog" appear>
-    <div class="lb-dialog" ref="lbDialog" :style="{width}" v-if="visible">
-      <div class="lb-dialog_header" v-if="headerShow">
+    <div class="lb-dialog" ref="lbDialog" :style="{width}" v-if="visible" v-drop="drop">
+      <div class="lb-dialog_header" v-if="headerShow" ref="lbDialogHeader">
         <span>{{title}}</span>
         <i class="lb-icon-clear" @click="close" v-if="closeButtonShow"></i>
       </div>
@@ -19,6 +19,76 @@
 let parentNode = null;
 export default {
   name: "lb-dialog",
+  directives: {
+    drop: {
+      bind(el, building, vnode) {
+        if (!building.value) return;
+        const header = vnode.context.$refs.lbDialogHeader;
+        const dialog = vnode.context.$refs.lbDialog;
+        if (header) {
+          let clientW = null;
+          let clientH = null;
+          let downX = null;
+          let downY = null;
+          let offsetW = null;
+          let offsetH = null;
+          let maxLeft = null;
+          let maxTop = null;
+          header.style.cursor = "move";
+          const mousemove = ev => {
+            ev.stopPropagation();
+            let left = ev.pageX - downX;
+            let top = ev.pageY - downY;
+            left <= 0 && (left = 0);
+            top <= 0 && (top = 0);
+            left >= maxLeft && (left = maxLeft);
+            top >= maxTop && (top = maxTop);
+            dialog.style.margin = "unset";
+            dialog.style.left = left + "px";
+            dialog.style.top = top + "px";
+          };
+
+          const mousedown = ev => {
+            if (ev.target.className === "lb-icon-clear") return;
+            ev.preventDefault();
+            clientW = document.documentElement.clientWidth;
+            clientH = document.documentElement.clientHeight;
+            downX = ev.offsetX;
+            downY = ev.offsetY;
+            offsetW = dialog.offsetWidth;
+            offsetH = dialog.offsetHeight;
+            maxLeft = clientW - offsetW;
+            maxTop = clientH - offsetH;
+            document.addEventListener("mousemove", mousemove, false);
+            document.addEventListener("mouseup", mouseup, false);
+          };
+
+          const mouseup = ev => {
+            document.removeEventListener("mousemove", mousemove);
+            document.removeEventListener("mouseup", mouseup);
+          };
+
+          header.addEventListener("mousedown", mousedown, false);
+          el.directiveEvent = {
+            mousedown,
+            mousemove,
+            mouseup
+          };
+        }
+      },
+      unbind(el, building, vnode) {
+        if (el.directiveEvent) {
+          const header = vnode.context.$refs.lbDialogHeader;
+          const dialog = vnode.context.$refs.lbDialog;
+          const { mousedown, mousemove, mouseup } = el.directiveEvent;
+          mousedown && header.removeEventListener("mousedown", mousedown);
+          mousemove && document.removeEventListener("mousemove", mousemove);
+          mousedown && document.removeEventListener("mouseup", mouseup);
+          header.style.cursor = "";
+        }
+      }
+    }
+  },
   props: {
     width: {
       type: String,
@@ -48,6 +118,10 @@ export default {
       type: Boolean,
       default: true
     },
+    drop: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -56,18 +130,18 @@ export default {
   },
   watch: {
     visible(visible) {
-        if (visible) {
-          this.domFormat();
-          setTimeout(() => {
-            this.startEvent();
-          });
-        } else {
-          this.clearEvent();
-          parentNode && parentNode.removeChild(this.$refs.model.$el);
-          parentNode = null;
-           this.$emit('close')
-        }
+      if (visible) {
+        this.domFormat();
+        setTimeout(() => {
+          this.startEvent();
+        });
+      } else {
+        this.clearEvent();
+        parentNode && parentNode.removeChild(this.$refs.model.$el);
+        parentNode = null;
+        this.$emit("close");
       }
+    }
   },
   components: {
     lbModel: {
@@ -95,7 +169,7 @@ export default {
     //   点击事件监听
     clickEvent(ev) {
       if (!this.$refs.lbDialog.contains(ev.target)) {
-       parentNode &&  this.close();
+        parentNode && this.close();
       }
     },
     // 键盘事件监听
@@ -105,7 +179,7 @@ export default {
       }
     },
     startEvent() {
-      this.$emit('open')
+      this.$emit("open");
       this.escClose && window.addEventListener("keydown", this.keyCodeEvent);
       this.modeClickClose && window.addEventListener("click", this.clickEvent);
     },
@@ -115,12 +189,11 @@ export default {
         window.removeEventListener("click", this.clickEvent);
     }
   },
-  mounted () {
-    if(this.visible){
-      this.$emit('open')
+  mounted() {
+    if (this.visible) {
+      this.$emit("open");
       this.domFormat();
     }
-
   }
 };
 </script>
