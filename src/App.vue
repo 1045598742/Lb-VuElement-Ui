@@ -1,14 +1,19 @@
 <template>
-  <div id="picker">
-    <lb-tree :data="arr" @nodeClick="nodeClick" :option="{label:'name',children:'cList'}"></lb-tree>
-    <lb-rate v-model="value"></lb-rate>
-    <el-rate
-      v-model="value"
-      :max="12"
-      show-score
-      text-color="#ff9900"
-      score-template="{value}">
-    </el-rate>
+  <div id="app">
+    <!-- <lb-tree :data="arr" @nodeClick="nodeClick" :option="{label:'name',children:'cList'}"></lb-tree>
+    <lb-rate v-model="value"></lb-rate> -->
+    <button @click="visible=!visible">11</button>
+    <lb-dialog :visible.sync="visible">
+      <div>这是一段测试文字</div>
+      <div>这是一段测试文字</div>
+      <div>这是一段测试文字</div>
+      <div>这是一段测试文字</div>
+      <div>这是一段测试文字</div>
+      <div>这是一段测试文字</div>
+       <template #footer>
+         <lb-button type="success">success</lb-button>
+       </template>
+    </lb-dialog>
   </div>
 </template>
 <script>
@@ -50,7 +55,8 @@ export default {
           ]
         }
       ],
-      value:0
+      value:0,
+      visible:false
     };
   },
   methods: {
@@ -58,13 +64,19 @@ export default {
       console.log(val,other);
     }
   },
-  mounted() {}
+  mounted() {
+  }
 };
 </script>
 <style lang="scss">
 * {
   margin: 0;
   padding: 0;
+}
+#app{
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
 }
 </style>
 
