@@ -120,7 +120,7 @@ export default {
     },
     drop: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data() {
