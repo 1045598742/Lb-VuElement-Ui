@@ -306,8 +306,8 @@ export default {
       }
       .progress-inner {
         display: inline-block;
-        width: 16px;
-        height: 16px;
+        width: 12px;
+        height: 12px;
         position: absolute;
         left: 0;
         top: 50%;
