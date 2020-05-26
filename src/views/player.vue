@@ -21,10 +21,13 @@
         {{ state == "stop" ? "▶" : "⏸" }}
       </div>
       <button @click="bs" style="margin-right:20px">+0.5倍速</button>
-      <div class="progress" ref="progress">
+      <!-- <div class="progress" ref="progress">
         <div class="progress-loading" :style="{ width }"></div>
         <span class="progress-inner" ref="circle"></span>
-      </div>
+      </div> -->
+      <lb-progress v-model="progress" @change="change" lang="500px" :key="1"></lb-progress>
+      <lb-progress v-model="sound" @input="changesound" @change="changesound" lang="80px" :key="2" type="vl" style="margin-left:50px;margin-bottom:50px"></lb-progress>
+
     </div>
     <audio :src="data.play_url" ref="audio" loop></audio>
   </div>
@@ -35,8 +38,6 @@ import { getMusic } from "@/api/getmusic";
 export default {
   data() {
     return {
-      mp3:
-        "https://webfs.yun.kugou.com/202005242310/9fc42a3b1f2978253f72550a581564d0/G148/M07/1C/14/1A0DAFwDrPGAFsVlAD83-eBHT_w602.mp3",
       width: 0,
       data: {
         img: "",
@@ -47,31 +48,41 @@ export default {
       state: "stop",
       down: false,
       bfb: 0,
-      activeLyricIndex:0
+      activeLyricIndex:0,
+      progress:0,
+      sound:0.5
     };
   },
-//   watch: {
- 
-//   },
   methods: {
+    change(val){
+      audio.currentTime = audio.duration * val
+    },
+    changesound(val){
+      this.sound = val;
+      audio.volume = val;
+    },
+    // input(val){
+    //   this.state = 'stop'
+    // },
     play() {
       audio.play();
-      audio.volume = 1;
-      this.state = "play";
+      audio.volume = this.sound;
+      this.state = 'play'
       this.timer = setInterval(() => {
-        if (this.down) return;
+        // if (this.down) return;
         const { currentTime, duration } = audio;
-        let num = currentTime / duration;
-        this.width = num * 100 + "%";
-        this.$refs.circle.style.left = this.width;
+        this.progress = currentTime / duration;
+        // this.width = num * 100 + "%";
+        // this.$refs.circle.style.left = this.width;
         this.lyricsMove(currentTime,duration)
-        if (num >= 1) {
-          this.width = 0;
-          this.$refs.circle.style.left = 0;
+        if (this.progress >= 1) {
+          this.progress =1
+          // this.width = 0;
+          // this.$refs.circle.style.left = 0;
           this.state = "stop";
           this.clearTime();
         }
-      }, 200);
+      }, 150);
     },
     stop() {
       this.state = "stop";
@@ -107,42 +118,42 @@ export default {
             lyrics.style.top = -top+'px';
 
     } ,
-    mousedown(ev) {
-      this.down = true;
-      ev.preventDefault();
-      window.addEventListener("mousemove", this.mousemove, false);
-      window.addEventListener("mouseup", this.mouseup, false);
-    },
-    mousemove(ev) {
-      ev.stopPropagation();
-      const circle = this.$refs.circle;
-      const progress = this.$refs.progress;
-      const { left, width } = progress.getBoundingClientRect();
-      let clientX = ev.clientX;
-      let positionX = null;
-      if (clientX >= left && clientX <= left + width) {
-        positionX = clientX - left;
-      }
-      if (clientX < left) {
-        positionX = 0;
-      }
-      if (clientX > left + width) {
-        positionX = width;
-      }
-      this.bfb = positionX / width;
-      this.width = this.bfb * 100 + "%";
-      circle.style.left = positionX + "px";
-    },
-    mouseup(ev) {
-      this.down = false;
-      audio.currentTime = audio.duration * this.bfb;
-      window.removeEventListener("mousemove", this.mousemove);
-      window.removeEventListener("mouseup", this.mouseup);
-    },
-    circleEvent() {
-      const circle = this.$refs.circle;
-      circle.addEventListener("mousedown", this.mousedown, false);
-    },
+    // mousedown(ev) {
+    //   this.down = true;
+    //   ev.preventDefault();
+    //   window.addEventListener("mousemove", this.mousemove, false);
+    //   window.addEventListener("mouseup", this.mouseup, false);
+    // },
+    // mousemove(ev) {
+    //   ev.stopPropagation();
+    //   const circle = this.$refs.circle;
+    //   const progress = this.$refs.progress;
+    //   const { left, width } = progress.getBoundingClientRect();
+    //   let clientX = ev.clientX;
+    //   let positionX = null;
+    //   if (clientX >= left && clientX <= left + width) {
+    //     positionX = clientX - left;
+    //   }
+    //   if (clientX < left) {
+    //     positionX = 0;
+    //   }
+    //   if (clientX > left + width) {
+    //     positionX = width;
+    //   }
+    //   this.bfb = positionX / width;
+    //   this.width = this.bfb * 100 + "%";
+    //   circle.style.left = positionX + "px";
+    // },
+    // mouseup(ev) {
+    //   this.down = false;
+    //   audio.currentTime = audio.duration * this.bfb;
+    //   window.removeEventListener("mousemove", this.mousemove);
+    //   window.removeEventListener("mouseup", this.mouseup);
+    // },
+    // circleEvent() {
+    //   const circle = this.$refs.circle;
+    //   circle.addEventListener("mousedown", this.mousedown, false);
+    // },
   },
   mounted() {
     audio = this.$refs.audio;
@@ -163,16 +174,16 @@ export default {
       //   console.log(arr);
       this.lyrics = arr
     });
-    this.circleEvent();
-    this.$refs.progress.addEventListener('click',ev=>{
-        ev.stopPropagation()
-        if(ev.target.className === 'progress'||ev.target.className==="progress-loading"){
-        this.width = ev.offsetX/this.$refs.progress.offsetWidth * 100 + "%";
-        this.$refs.circle.style.left = ev.offsetX + "px";
-         audio.currentTime = audio.duration * ev.offsetX/this.$refs.progress.offsetWidth;
-        }
+    // this.circleEvent();
+    // this.$refs.progress.addEventListener('click',ev=>{
+    //     ev.stopPropagation()
+    //     if(ev.target.className === 'progress'||ev.target.className==="progress-loading"){
+    //     this.width = ev.offsetX/this.$refs.progress.offsetWidth * 100 + "%";
+    //     this.$refs.circle.style.left = ev.offsetX + "px";
+    //      audio.currentTime = audio.duration * ev.offsetX/this.$refs.progress.offsetWidth;
+    //     }
         
-    },false)
+    // },false)
 
   },
 };

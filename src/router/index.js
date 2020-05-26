@@ -21,5 +21,9 @@ export default new Router({
             path:'/player',
             component:()=> import( '@/views/player.vue')
         },
+        {
+            path:'/progress',
+            component:()=> import( '@/views/progress.vue')
+        },
     ]
 })

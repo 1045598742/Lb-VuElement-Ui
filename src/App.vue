@@ -14,49 +14,17 @@
          <lb-button type="success">success</lb-button>
        </template>
     </lb-dialog>-->
-
+    <!-- <lb-progress v-model="value"></lb-progress> -->
     <router-view></router-view>
   </div>
 </template>
 <script>
+import lbprogress from './views/progress'
 var Dates = new Date();
 export default {
   data() {
     return {
-      arr: [
-        {
-          id: 0,
-          name: "0",
-          cList: [
-            {
-              id: 1,
-              name: "0-1"
-            },
-            {
-              id: 2,
-              name: "0-2",
-              cList: [
-                {
-                  id: 5,
-                  name: "2-1"
-                },
-                {
-                  id: 6,
-                  name: "2-2"
-                }
-              ]
-            },
-            {
-              id: 3,
-              name: "0-3"
-            },
-            {
-              id: 4,
-              name: "0-4"
-            }
-          ]
-        }
-      ],
+  
       value: 0,
       visible: false
     };
@@ -64,6 +32,12 @@ export default {
   methods: {
     nodeClick(val, other) {
       console.log(val, other);
+    },
+    input(val){
+      console.log('input');
+    },
+    change(val){
+      console.log('change');
     }
   },
   mounted() {
@@ -80,7 +54,7 @@ body,html{
 }
 #app {
   height: 100%;
-  background: black;
+  // background: black;
   // width: 60px;
   // height: 60px;
   // overflow: hidden;
