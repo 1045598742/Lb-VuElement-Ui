@@ -1,0 +1,51 @@
+.lb-slider {
+    border-radius: 3px;
+    background: #e4e7ed;
+    position: relative;
+    span {
+      border-radius: inherit;
+      display: inline-block;
+      background: lighten($success,20%);
+      position: absolute;
+      z-index: 1;
+    }
+    .circle {
+      z-index: 3;
+      position: absolute;
+      border-radius: 50%;
+      width: 14px;
+      height: 14px;
+      display: block;
+      background: white;
+      box-sizing: border-box;
+      border: 2px solid $success;
+    }
+    &-hz {
+      width: 500px;
+      height: 6px;
+      span {
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 6px;
+      }
+      .circle {
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    &-vl {
+      width: 6px;
+      // height: 500px;
+      span {
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        display: block;
+      }
+      .circle {
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }

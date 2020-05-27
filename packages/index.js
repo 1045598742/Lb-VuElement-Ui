@@ -10,6 +10,7 @@ import Input from "./Input.vue";
 import DatePicker from "./Date-Picker.vue";
 import Switch from "./Switch.vue";
 import Rate from "./Rate.vue";
+import Slider from "./Slider.vue";
 // import './cssstyle/index.scss'
 
 //把所有组件存储起来
@@ -54,5 +55,6 @@ export {
     Input,
     DatePicker,
     Switch,
-    Rate
+    Rate,
+    Slider
 }
