@@ -7,7 +7,7 @@ export default new Router({
     routes:[
         {
             path:'/',
-            redirect:'/player'
+            redirect:'/clip'
         },
         {
             path:'/picker-demo',
@@ -25,5 +25,15 @@ export default new Router({
             path:'/progress',
             component:()=> import( '@/views/progress.vue')
         },
+        {
+            path:'/canvans',
+            component:()=> import( '@/views/canvans.vue'),
+            name:'canvans'
+        },
+        {
+            path:'/clip',
+            component:()=> import( '@/views/clip-image.vue'),
+            name:'clip'
+        }
     ]
 })

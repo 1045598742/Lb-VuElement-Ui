@@ -1,0 +1,17 @@
+.lb-clip_image {
+    cursor: pointer;
+    .preview-image {
+      height: 200px;
+      width: 200px;
+      line-height: 200px;
+      border-radius: 8px;
+      border: 1px dashed #eee;
+    }
+    .lb-upload_button {
+      @extend .preview-image;
+      text-align: center;
+    }
+    img {
+      display: block;
+    }
+  }

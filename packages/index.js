@@ -11,7 +11,9 @@ import DatePicker from "./Date-Picker.vue";
 import Switch from "./Switch.vue";
 import Rate from "./Rate.vue";
 import Slider from "./Slider.vue";
-// import './cssstyle/index.scss'
+import ClipImage from "./Clip-image.vue";
+import Dialog from "./Dialog.vue";
+import './cssstyle/index.scss'
 
 //把所有组件存储起来
 
@@ -56,5 +58,7 @@ export {
     DatePicker,
     Switch,
     Rate,
-    Slider
+    Slider,
+    ClipImage,
+    Dialog
 }
