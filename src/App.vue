@@ -1,30 +1,12 @@
 <template>
   <div id="app">
-    <!-- <lb-tree :data="arr" @nodeClick="nodeClick" :option="{label:'name',children:'cList'}"></lb-tree>
-    <lb-rate v-model="value"></lb-rate>-->
-    <!-- <button @click="visible=!visible">11</button>
-    <lb-dialog :visible.sync="visible">
-      <div>这是一段测试文字</div>
-      <div>这是一段测试文字</div>
-      <div>这是一段测试文字</div>
-      <div>这是一段测试文字</div>
-      <div>这是一段测试文字</div>
-      <div>这是一段测试文字</div>
-       <template #footer>
-         <lb-button type="success">success</lb-button>
-       </template>
-    </lb-dialog>-->
-    <!-- <lb-progress v-model="value"></lb-progress> -->
     <router-view></router-view>
   </div>
 </template>
 <script>
-import lbprogress from './views/progress'
-var Dates = new Date();
 export default {
   data() {
     return {
-  
       value: 0,
       visible: false
     };

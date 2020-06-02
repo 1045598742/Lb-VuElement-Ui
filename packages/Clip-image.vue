@@ -1,7 +1,6 @@
 <template>
   <div class="lb-clip_image">
-    <img @click="upload" v-if="img.src" :src="img.src" class="preview-image" />
-    <div @click="upload" v-else class="lb-upload_button">
+    <div @click="upload" class="lb-upload_button">
       上传
     </div>
     <input
@@ -104,6 +103,8 @@ export default {
     drawImage() {
       let canvansElement = this.$refs.canvans.getContext("2d");
       canvansElement.clearRect(0, 0, this.maxWidth, this.height); // 清空canvans画布
+      canvansElement.fillStyle = "#fff";
+      canvansElement.fillRect(0, 0, this.maxWidth, this.height); // 画布填充底色
       canvansElement.drawImage(this.img, 0, 0, this.maxWidth, this.height); // 绘制图片
       this.imgList = []; // 重置图片列表
       this.heightList.forEach(({ from, to }, index) => {
@@ -122,7 +123,7 @@ export default {
           this.maxWidth,
           to - from
         ); //  将图片数据放到画布
-        let base64 = canvans.toDataURL("image/png"); // 生成base64编码
+        let base64 = canvans.toDataURL("image/jpeg",0.6); // 生成base64编码
         let resultData = this.base64Handler(base64, index); // 处理成需要的文件格式
         this.imgList.push(resultData);
       });

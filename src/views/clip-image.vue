@@ -1,6 +1,6 @@
 <template>
     <div>
-        <lb-clip-image @finish="finish" :maxWidth="750" :maxHeight="750" type="file"></lb-clip-image>
+        <lb-clip-image @finish="finish" :maxWidth="750" :maxHeight="750"></lb-clip-image>
         <div v-for="(item, index) in imgList" :key="index" >
             <img :src="item" alt />
         </div>
