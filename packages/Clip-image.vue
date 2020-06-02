@@ -1,6 +1,7 @@
 <template>
   <div class="lb-clip_image">
-    <div @click="upload" class="lb-upload_button">
+    <img @click="upload" v-if="img.src" :src="img.src" class="preview-image" />
+    <div @click="upload" v-else class="lb-upload_button">
       上传
     </div>
     <input
