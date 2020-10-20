@@ -73,7 +73,6 @@ export default {
     valueSave: {
       handler(value) {
         const { max, type, state } = this;
-
         this.$nextTick(() => {
           const { width, height } = this.$refs.progress.getBoundingClientRect();
           if (type === "hz") {

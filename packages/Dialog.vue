@@ -186,7 +186,7 @@ export default {
     clearEvent() {
       this.escClose && window.removeEventListener("keydown", this.keyCodeEvent);
       this.modeClickClose &&
-        window.removeEventListener("click", this.clickEvent);
+      window.removeEventListener("click", this.clickEvent);
     }
   },
   mounted() {

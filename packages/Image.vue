@@ -28,8 +28,7 @@ export default {
       console.log(ev, 'error')
     },
     event: throttle(function () {
-      console.log(123)
-            let parentBottom = dom.getBoundingClientRect().bottom;
+      let parentBottom = dom.getBoundingClientRect().bottom;
       let imgTop = this.$refs.lbImage.getBoundingClientRect().top;
       if (imgTop <= parentBottom) {
         this.defaultSrc = this.src;
